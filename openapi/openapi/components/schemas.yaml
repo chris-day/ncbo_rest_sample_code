@@ -1,0 +1,7 @@
+schemas:
+  Error:
+    type: object
+  Ontology:
+    type: object
+  Class:
+    type: object

@@ -1,0 +1,32 @@
+{
+  "info": {
+    "name": "OntoPortal \u2013 Search",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Search terms",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://data.bioontology.org/search?q=heart",
+          "protocol": "https",
+          "host": [
+            "data",
+            "bioontology",
+            "org"
+          ],
+          "path": [
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "heart"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

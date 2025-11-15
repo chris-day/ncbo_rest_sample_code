@@ -1,0 +1,44 @@
+openapi: 3.0.3
+info:
+  title: OntoPortal Demo API (Unofficial)
+  version: "1.0.0"
+  description: |
+    Unofficial OpenAPI 3.0 description for the OntoPortal demo instance at
+  - url: https://data.bioontology.org
+servers:
+  - url: https://data.bioontology.org
+  - url: https://data.bioontology.org
+  - url: https://data.bioportal.lirmm.fr/
+  - url: https://data.agroportal.lirmm.fr/
+  - url: https://data.ecoportal.lifewatch.eu/
+  - url: http://data.medportal.bmicc.cn/
+  - url: https://data.industryportal.enit.fr/
+  - url: https://data.earthportal.eu/
+  - url: https://data.biodivportal.gfbio.org/
+security:
+  - ApiKeyQuery: []
+  - ApiKeyHeader: []
+tags:
+  - name: Search
+    description: Term and property search operations.
+  - name: Annotator
+    description: Text annotation services.
+  - name: Recommender
+    description: Ontology recommendation services.
+  - name: Batch
+    description: Batch operations over multiple resources.
+  - name: Ontologies
+    description: Ontology catalogue and metadata.
+  - name: Classes
+    description: Ontology classes and related operations.
+  - name: Categories
+    description: Ontology domain categories.
+components:
+  securitySchemes:
+    $ref: './components/security.yaml#/securitySchemes'
+  parameters:
+    $ref: './components/parameters.yaml#/parameters'
+  schemas:
+    $ref: './components/schemas.yaml#/schemas'
+paths:
+  $ref: './paths/common.yaml#/paths'
