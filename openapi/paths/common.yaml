@@ -1,0 +1,181 @@
+paths:
+  /search:
+    get:
+      summary: Term search
+      description: Search for terms and their properties across ontologies.
+      security:
+        - ApiKeyQuery: []
+        - ApiKeyHeader: []
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ontologies
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: require_exact_match
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - $ref: '#/components/parameters/Include'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Format'
+        - $ref: '#/components/parameters/IncludeViews'
+        - $ref: '#/components/parameters/DisplayContext'
+        - $ref: '#/components/parameters/DisplayLinks'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /property_search:
+    get:
+      summary: Ontology property search
+      description: Search ontology properties by labels and IDs.
+      security:
+        - ApiKeyQuery: []
+        - ApiKeyHeader: []
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ontologies
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Format'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertySearchResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /annotator:
+    get:
+      summary: Annotate text
+      description: Analyse text and return relevant ontology classes.
+      security:
+        - ApiKeyQuery: []
+        - ApiKeyHeader: []
+      parameters:
+        - name: text
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ontologies
+          in: query
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Format'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnotatorResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /recommender:
+    get:
+      summary: Recommend ontologies
+      description: Suggest appropriate ontologies for a text or list of keywords.
+      security:
+        - ApiKeyQuery: []
+        - ApiKeyHeader: []
+      parameters:
+        - name: input
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: input_type
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum: [1, 2]
+            default: 1
+        - $ref: '#/components/parameters/Format'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommenderResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /batch:
+    post:
+      summary: Batch endpoint
+      description: Batch operations for resources (e.g. classes).
+      security:
+        - ApiKeyQuery: []
+        - ApiKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /categories:
+    $ref: './categories.yaml#/paths/~1categories'
+  /ontologies:
+    $ref: './ontologies.yaml#/paths/~1ontologies'
+  /ontologies/{acronym}:
+    $ref: './ontologies.yaml#/paths/~1ontologies~1{acronym}'
+  /ontologies/{acronym}/classes:
+    $ref: './ontologies.yaml#/paths/~1ontologies~1{acronym}~1classes'
+  /ontologies/{acronym}/classes/{clsId}:
+    $ref: './ontologies.yaml#/paths/~1ontologies~1{acronym}~1classes~1{clsId}'

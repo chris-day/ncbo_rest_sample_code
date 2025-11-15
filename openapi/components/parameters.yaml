@@ -1,0 +1,49 @@
+parameters:
+  Format:
+    name: format
+    in: query
+    required: false
+    schema:
+      type: string
+      enum: [json, jsonp, xml]
+  Include:
+    name: include
+    in: query
+    required: false
+    schema:
+      type: string
+  Page:
+    name: page
+    in: query
+    required: false
+    schema:
+      type: integer
+      default: 1
+  PageSize:
+    name: pagesize
+    in: query
+    required: false
+    schema:
+      type: integer
+      default: 50
+  IncludeViews:
+    name: include_views
+    in: query
+    required: false
+    schema:
+      type: boolean
+      default: false
+  DisplayContext:
+    name: display_context
+    in: query
+    required: false
+    schema:
+      type: boolean
+      default: true
+  DisplayLinks:
+    name: display_links
+    in: query
+    required: false
+    schema:
+      type: boolean
+      default: true

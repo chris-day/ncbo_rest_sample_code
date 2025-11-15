@@ -1,0 +1,9 @@
+securitySchemes:
+  ApiKeyQuery:
+    type: apiKey
+    in: query
+    name: apikey
+  ApiKeyHeader:
+    type: apiKey
+    in: header
+    name: Authorization
